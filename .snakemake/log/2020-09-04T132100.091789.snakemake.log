@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 10 of /data/user/huangf/Arginini/original/snakemake/rules/selectLongRead.smk:
+Missing input files for rule select_longread:
+{config['nanopore']}
+1000000

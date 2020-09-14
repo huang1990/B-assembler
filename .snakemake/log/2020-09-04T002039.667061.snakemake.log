@@ -1,0 +1,3 @@
+SyntaxError in line 12 of /data/user/huangf/Arginini/original/snakemake/rules/selectLongRead.smk:
+invalid syntax
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 8, in <module>

@@ -1,0 +1,62 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	endReads_select
+	1	merge_end_reads
+	1	rawfq_firstrun
+	1	remove_dupl
+	5
+
+[Sun Sep  6 16:32:33 2020]
+rule rawfq_firstrun:
+    input: output/firstrun.fa, data/rawdata.fastq
+    output: output/rawfq-firstrun-srt.bam
+    jobid: 4
+
+[Sun Sep  6 16:33:25 2020]
+Finished job 4.
+1 of 5 steps (20%) done
+
+[Sun Sep  6 16:33:25 2020]
+rule endReads_select:
+    input: output/firstrun.fa, output/rawfq-firstrun-srt.bam
+    output: output/EndAlign.fq, output/beginAlign.fq
+    jobid: 3
+
+[Sun Sep  6 16:33:25 2020]
+Finished job 3.
+2 of 5 steps (40%) done
+
+[Sun Sep  6 16:33:25 2020]
+rule merge_end_reads:
+    input: output/EndAlign.fq, output/beginAlign.fq
+    output: output/EndReads.fq, output/EndReads.fa
+    jobid: 2
+
+[Sun Sep  6 16:33:25 2020]
+Finished job 2.
+3 of 5 steps (60%) done
+
+[Sun Sep  6 16:33:25 2020]
+rule remove_dupl:
+    input: output/EndReads.fa
+    output: output/EndReads_dupl_remove.fa
+    jobid: 1
+
+[Sun Sep  6 16:33:25 2020]
+Finished job 1.
+4 of 5 steps (80%) done
+
+[Sun Sep  6 16:33:25 2020]
+localrule all:
+    input: output/EndReads_dupl_remove.fa
+    jobid: 0
+
+[Sun Sep  6 16:33:25 2020]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: /data/user/huangf/Arginini/original/snakemake/.snakemake/log/2020-09-06T163233.880795.snakemake.log

@@ -1,0 +1,3 @@
+SyntaxError in line 13 of /data/user/huangf/Arginini/original/snakemake/rules/tworoundMerge.smk:
+invalid syntax
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 12, in <module>

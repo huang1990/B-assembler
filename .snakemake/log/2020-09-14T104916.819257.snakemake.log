@@ -1,0 +1,61 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	polish_round1
+	1	polish_round2
+	1	polish_round3
+	1	polish_round4
+	5
+
+[Mon Sep 14 10:49:16 2020]
+rule polish_round1:
+    input: output/First_second_merge.fa, data/rawdata.fastq
+    output: output/racon_polish_1.fa
+    jobid: 4
+
+[Mon Sep 14 10:55:55 2020]
+Finished job 4.
+1 of 5 steps (20%) done
+
+[Mon Sep 14 10:55:55 2020]
+rule polish_round2:
+    input: output/racon_polish_1.fa, data/rawdata.fastq
+    output: output/racon_polish_2.fa
+    jobid: 3
+
+[Mon Sep 14 11:02:35 2020]
+Finished job 3.
+2 of 5 steps (40%) done
+
+[Mon Sep 14 11:02:35 2020]
+rule polish_round3:
+    input: output/racon_polish_2.fa, data/rawdata.fastq
+    output: output/racon_polish_3.fa
+    jobid: 2
+
+[Mon Sep 14 11:09:13 2020]
+Finished job 2.
+3 of 5 steps (60%) done
+
+[Mon Sep 14 11:09:13 2020]
+rule polish_round4:
+    input: output/racon_polish_3.fa, data/rawdata.fastq
+    output: output/merge_corrected_4.fasta
+    jobid: 1
+
+Terminating processes on user request, this might take some time.
+[Mon Sep 14 11:10:28 2020]
+Error in rule polish_round4:
+    jobid: 1
+    output: output/merge_corrected_4.fasta
+    shell:
+        minimap2 -ax map-ont output/racon_polish_3.fa data/rawdata.fastq > output/rawfq_merged_4.sam && racon data/rawdata.fastq output/rawfq_merged_4.sam output/racon_polish_3.fa > output/merge_corrected_4.fasta
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job polish_round4 since they might be corrupted:
+output/merge_corrected_4.fasta
+Complete log: /data/user/huangf/Arginini/original/snakemake/.snakemake/log/2020-09-14T104916.819257.snakemake.log

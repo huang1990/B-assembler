@@ -1,0 +1,4 @@
+CreateRuleException in line 14 of /data/user/huangf/Arginini/original/snakemake/rules/secondround.smk:
+The name select_longestContig is already used by another rule
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 11, in <module>
+  File "/data/user/huangf/Arginini/original/snakemake/rules/secondround.smk", line 14, in <module>

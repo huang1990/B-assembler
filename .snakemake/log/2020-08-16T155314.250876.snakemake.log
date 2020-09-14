@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	select_longread
+	1
+
+[Sun Aug 16 15:53:14 2020]
+rule select_longread:
+    input: read_len_distrbution.txt
+    output: read_len_distrbution1.txt
+    jobid: 0
+
+[Sun Aug 16 15:53:14 2020]
+Error in rule select_longread:
+    jobid: 0
+    output: read_len_distrbution1.txt
+    shell:
+        cat read_len_distrbution.txt | soort -rn > read_len_distrbution1.txt
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job select_longread since they might be corrupted:
+read_len_distrbution1.txt
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/.snakemake/log/2020-08-16T155314.250876.snakemake.log

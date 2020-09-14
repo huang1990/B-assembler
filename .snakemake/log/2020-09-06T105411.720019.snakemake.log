@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 20 of /data/user/huangf/Arginini/original/snakemake/snakefile:
+Missing input files for rule all:
+EndReads_dupl_remove.fa

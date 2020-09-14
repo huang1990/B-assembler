@@ -1,0 +1,4 @@
+CreateRuleException in line 10 of /data/user/huangf/Arginini/original/snakemake/rules/polish.smk:
+The name polish_round1 is already used by another rule
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 13, in <module>
+  File "/data/user/huangf/Arginini/original/snakemake/rules/polish.smk", line 10, in <module>

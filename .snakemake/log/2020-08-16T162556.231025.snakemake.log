@@ -1,0 +1,18 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	longread_len
+	1
+
+[Sun Aug 16 16:25:56 2020]
+rule longread_len:
+    input: /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/data/m150118_055507_00127_c100673182550000001823137502061570_s1_p0.bas.h5.fastq
+    jobid: 0
+
+[Sun Aug 16 16:25:58 2020]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/.snakemake/log/2020-08-16T162556.231025.snakemake.log

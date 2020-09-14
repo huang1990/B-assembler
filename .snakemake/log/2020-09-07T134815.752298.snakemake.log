@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	second_assembly
+	1
+
+[Mon Sep  7 13:48:15 2020]
+rule second_assembly:
+    input: output/EndReads_dupl_remove.fa
+    jobid: 0
+
+[Mon Sep  7 13:48:16 2020]
+Error in rule second_assembly:
+    jobid: 0
+    shell:
+        flye --nano-raw output/EndReads_dupl_remove.fa --min-overlap 1000 --asm-coverage 50 --genome-size 281317.0 --out-dir output/secondrun
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /data/user/huangf/Arginini/original/snakemake/.snakemake/log/2020-09-07T134815.752298.snakemake.log

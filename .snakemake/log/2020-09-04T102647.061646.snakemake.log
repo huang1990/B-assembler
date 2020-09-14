@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 16 of /data/user/huangf/Arginini/original/snakemake/rules/tworoundMerge.smk:
+Missing input files for rule mergeFa:
+output/EndSeq
+output/BeginSeq

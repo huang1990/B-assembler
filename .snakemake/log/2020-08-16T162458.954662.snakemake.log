@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	longread_len
+	1
+
+[Sun Aug 16 16:24:58 2020]
+rule longread_len:
+    input: /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/data/m150118_055507_00127_c100673182550000001823137502061570_s1_p0.bas.h5.fastq
+    jobid: 0
+
+[Sun Aug 16 16:24:59 2020]
+Error in rule longread_len:
+    jobid: 0
+
+RuleException:
+NameError in line 6 of /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/snakefile:
+The name 'input' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}
+  File "/data/user/huangf/Arginini/script-test/Only-long-read/snakemake/snakefile", line 6, in __rule_longread_len
+  File "/home/huangf/.conda/envs/snakemake/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /data/user/huangf/Arginini/script-test/Only-long-read/snakemake/.snakemake/log/2020-08-16T162458.954662.snakemake.log

@@ -1,0 +1,139 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	endReads_select
+	1	first_assemble
+	1	fq_to_fa
+	1	longread_len
+	1	longread_polish
+	1	merge_end_reads
+	1	rawfq_firstrun
+	1	remove_dupl
+	1	select_longestContig
+	1	select_longread
+	1	short_to_long
+	12
+
+[Sun Sep  6 14:40:48 2020]
+rule longread_len:
+    input: data/rawdata.fastq
+    output: output/read_len_distrbution_2.txt
+    jobid: 11
+
+[Sun Sep  6 14:40:48 2020]
+Finished job 11.
+1 of 12 steps (8%) done
+
+[Sun Sep  6 14:40:48 2020]
+rule select_longread:
+    input: data/rawdata.fastq, output/read_len_distrbution_2.txt
+    output: output/filter_length.fq, output/left_filter_length.fq
+    jobid: 9
+
+[Sun Sep  6 14:40:49 2020]
+Finished job 9.
+2 of 12 steps (17%) done
+
+[Sun Sep  6 14:40:49 2020]
+rule fq_to_fa:
+    input: output/filter_length.fq
+    output: output/filter_length.fa
+    jobid: 8
+
+[Sun Sep  6 14:40:49 2020]
+Finished job 8.
+3 of 12 steps (25%) done
+
+[Sun Sep  6 14:40:49 2020]
+rule short_to_long:
+    input: output/filter_length.fa, output/left_filter_length.fq
+    output: output/short_to_long.sam
+    jobid: 10
+
+[Sun Sep  6 14:42:39 2020]
+Finished job 10.
+4 of 12 steps (33%) done
+
+[Sun Sep  6 14:42:39 2020]
+rule longread_polish:
+    input: output/filter_length.fa, output/left_filter_length.fq, output/short_to_long.sam
+    output: output/long_racon_corrected.fa
+    jobid: 7
+
+[Sun Sep  6 14:44:42 2020]
+Finished job 7.
+5 of 12 steps (42%) done
+
+[Sun Sep  6 14:44:42 2020]
+rule first_assemble:
+    input: output/long_racon_corrected.fa
+    output: output/assembly.fasta
+    jobid: 6
+
+[Sun Sep  6 14:56:54 2020]
+Finished job 6.
+6 of 12 steps (50%) done
+
+[Sun Sep  6 14:56:54 2020]
+rule select_longestContig:
+    input: output/assembly.fasta
+    output: output/firstrun.fa
+    jobid: 4
+
+[Sun Sep  6 14:56:55 2020]
+Finished job 4.
+7 of 12 steps (58%) done
+
+[Sun Sep  6 14:56:55 2020]
+rule rawfq_firstrun:
+    input: output/firstrun.fa, data/rawdata.fastq
+    output: output/rawfq-firstrun-srt.bam
+    jobid: 5
+
+[Sun Sep  6 14:57:46 2020]
+Finished job 5.
+8 of 12 steps (67%) done
+
+[Sun Sep  6 14:57:46 2020]
+rule endReads_select:
+    input: output/firstrun.fa, output/rawfq-firstrun-srt.bam
+    output: output/EndAlign.fq, output/beginAlign.fq
+    jobid: 3
+
+[Sun Sep  6 14:57:46 2020]
+Finished job 3.
+9 of 12 steps (75%) done
+
+[Sun Sep  6 14:57:46 2020]
+rule merge_end_reads:
+    input: output/EndAlign.fq, output/beginAlign.fq
+    output: output/EndReads.fq, output/EndReads.fa
+    jobid: 2
+
+[Sun Sep  6 14:57:47 2020]
+Finished job 2.
+10 of 12 steps (83%) done
+
+[Sun Sep  6 14:57:47 2020]
+rule remove_dupl:
+    input: output/EndReads.fa
+    output: output/EndReads_dupl_remove.fa
+    jobid: 1
+
+[Sun Sep  6 14:57:47 2020]
+Finished job 1.
+11 of 12 steps (92%) done
+
+[Sun Sep  6 14:57:47 2020]
+localrule all:
+    input: output/EndReads_dupl_remove.fa
+    jobid: 0
+
+[Sun Sep  6 14:57:47 2020]
+Finished job 0.
+12 of 12 steps (100%) done
+Complete log: /data/user/huangf/Arginini/original/snakemake/.snakemake/log/2020-09-06T144047.956811.snakemake.log

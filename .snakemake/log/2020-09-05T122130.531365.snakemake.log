@@ -1,0 +1,3 @@
+KeyError in line 12 of /data/user/huangf/Arginini/original/snakemake/snakefile:
+'nanopore'
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 12, in <module>

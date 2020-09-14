@@ -1,0 +1,4 @@
+SyntaxError:
+Input and output files have to be specified as strings or lists of strings.
+  File "/data/user/huangf/Arginini/original/snakemake/snakefile", line 8, in <module>
+  File "/data/user/huangf/Arginini/original/snakemake/rules/selectLongRead.smk", line 18, in <module>

@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	rawfq_firstrun
+	1	select_longestContig
+	3
+
+[Sat Sep  5 21:35:25 2020]
+rule select_longestContig:
+    input: output/assembly.fasta
+    output: output/firstrun.fa
+    jobid: 2
+
+[Sat Sep  5 21:35:27 2020]
+Finished job 2.
+1 of 3 steps (33%) done
+
+[Sat Sep  5 21:35:27 2020]
+rule rawfq_firstrun:
+    input: output/firstrun.fa, data/rawdata.fastq
+    output: output/rawfq-firstrun-srt.bam
+    jobid: 1
+
+[Sat Sep  5 21:36:19 2020]
+Finished job 1.
+2 of 3 steps (67%) done
+
+[Sat Sep  5 21:36:19 2020]
+localrule all:
+    input: output/rawfq-firstrun-srt.bam
+    jobid: 0
+
+[Sat Sep  5 21:36:19 2020]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: /data/user/huangf/Arginini/original/snakemake/.snakemake/log/2020-09-05T213525.080623.snakemake.log

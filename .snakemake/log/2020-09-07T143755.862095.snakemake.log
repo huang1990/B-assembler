@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 19 of /data/user/huangf/Arginini/original/snakemake/rules/secondround.smk:
+Missing input files for rule select_longContig:
+output/secondrun/assembly.fasta

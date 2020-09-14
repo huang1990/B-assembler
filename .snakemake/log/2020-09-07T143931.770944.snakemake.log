@@ -1,0 +1,122 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	merge
+	1	mergeFa
+	1	polish_round1
+	1	polish_round2
+	1	polish_round3
+	1	polish_round5
+	1	rearrange
+	1	second_assembly
+	1	select_longContig
+	1	tworun_align
+	11
+
+[Mon Sep  7 14:39:31 2020]
+rule second_assembly:
+    input: output/EndReads_dupl_remove.fa
+    output: output/secondrun/assembly.fasta
+    jobid: 10
+
+[Mon Sep  7 14:50:10 2020]
+Finished job 10.
+1 of 11 steps (9%) done
+
+[Mon Sep  7 14:50:10 2020]
+rule select_longContig:
+    input: output/secondrun/assembly.fasta
+    output: output/secondrun.fa
+    jobid: 9
+
+[Mon Sep  7 14:50:10 2020]
+Finished job 9.
+2 of 11 steps (18%) done
+
+[Mon Sep  7 14:50:10 2020]
+rule tworun_align:
+    input: output/secondrun.fa, output/firstrun.fa
+    output: output/first_second.paf
+    jobid: 8
+
+[Mon Sep  7 14:50:11 2020]
+Finished job 8.
+3 of 11 steps (27%) done
+
+[Mon Sep  7 14:50:11 2020]
+rule merge:
+    input: output/first_second.paf, output/firstrun.fa, output/secondrun.fa
+    output: output/BeginSeq, output/EndSeq
+    jobid: 7
+
+[Mon Sep  7 14:50:11 2020]
+Finished job 7.
+4 of 11 steps (36%) done
+
+[Mon Sep  7 14:50:11 2020]
+rule mergeFa:
+    input: output/BeginSeq, output/EndSeq
+    output: output/First_second_merge.fa
+    jobid: 6
+
+[Mon Sep  7 14:50:11 2020]
+Finished job 6.
+5 of 11 steps (45%) done
+
+[Mon Sep  7 14:50:11 2020]
+rule polish_round1:
+    input: output/First_second_merge.fa, data/rawdata.fastq
+    output: output/racon_polish_1.fa
+    jobid: 5
+
+[Mon Sep  7 14:55:56 2020]
+Finished job 5.
+6 of 11 steps (55%) done
+
+[Mon Sep  7 14:55:56 2020]
+rule polish_round2:
+    input: output/racon_polish_1.fa, data/rawdata.fastq
+    output: output/racon_polish_2.fa
+    jobid: 4
+
+[Mon Sep  7 15:01:45 2020]
+Finished job 4.
+7 of 11 steps (64%) done
+
+[Mon Sep  7 15:01:45 2020]
+rule polish_round3:
+    input: output/racon_polish_2.fa, data/rawdata.fastq
+    output: output/racon_polish_3.fa
+    jobid: 3
+
+[Mon Sep  7 15:07:36 2020]
+Finished job 3.
+8 of 11 steps (73%) done
+
+[Mon Sep  7 15:07:36 2020]
+rule polish_round5:
+    input: output/racon_polish_3.fa, data/rawdata.fastq
+    output: output/racon_polish_4.fa
+    jobid: 2
+
+[Mon Sep  7 15:13:16 2020]
+Finished job 2.
+9 of 11 steps (82%) done
+
+[Mon Sep  7 15:13:16 2020]
+rule rearrange:
+    input: output/racon_polish_4.fa, script/start_gene.fa
+    output: output/B_assembly.fasta
+    jobid: 1
+
+RuleException in line 1 of /data/user/huangf/Arginini/original/snakemake/rules/rearrangeStart.smk:
+NameError: The name 'inout' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}
+  File "/data/user/huangf/snakemake/lib/python3.6/site-packages/snakemake/executors/__init__.py", line 115, in run_jobs
+  File "/data/user/huangf/snakemake/lib/python3.6/site-packages/snakemake/executors/__init__.py", line 402, in run
+  File "/data/user/huangf/snakemake/lib/python3.6/site-packages/snakemake/executors/__init__.py", line 203, in _run
+  File "/data/user/huangf/snakemake/lib/python3.6/site-packages/snakemake/executors/__init__.py", line 131, in _run
+  File "/data/user/huangf/snakemake/lib/python3.6/site-packages/snakemake/executors/__init__.py", line 137, in printjob
