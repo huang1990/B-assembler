@@ -5,4 +5,4 @@ rule rearrange:
     output:
         "output/B_assembly.fasta"
     shell:
-        "python rearrange_startPoint.py {input.assembly} {input.startfa} {output}"
+        "python script/rearrange_startPoint.py {input.assembly} {input.startfa} {output}"

@@ -7,7 +7,7 @@ configfile: 'config.yaml'
 #import rules
 include: 'rules/hybridSelectLongRead.smk'
 include: 'rules/firstround.smk'
-include: 'rules/selectEndRead.smk'
+#include: 'rules/selectEndRead.smk'
 include: 'rules/secondround.smk'
 include: 'rules/tworoundMerge.smk'
 include: 'rules/hybridPolish.smk'

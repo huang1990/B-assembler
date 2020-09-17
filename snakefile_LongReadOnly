@@ -5,9 +5,8 @@
 configfile: 'config.yaml'
 
 #import rules
-include: 'LongReadSelectLongRead.smk'
-include: 'firstround.smk'
-include: 'selectEndRead.smk'
+include: 'rules/LongReadSelectLongRead.smk'
+include: 'rules/firstround.smk'
 include: 'rules/secondround.smk'
 include: 'rules/tworoundMerge.smk'
 include: 'rules/LongReadPolish.smk'
@@ -21,6 +20,7 @@ def all_input(wildcards):
     """
     Function defining all requested inputs for the rule all (below).
     """
+
 rule all:
-    input: 
+    input:
         "output/B_assembly.fasta"
