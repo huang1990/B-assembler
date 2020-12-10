@@ -7,10 +7,12 @@ len_distr = sys.argv[2]
 genomeSize = sys.argv[3]
 outfile = sys.argv[4]
 outfile_2 = sys.argv[5]
+
 #find the read length that reads longer than it had coverage 30 
 file=open(len_distr,'r')
 n=0
 rd_sum=0
+
 for line in file:
     n+=1
     line=line.strip('\n')
@@ -29,6 +31,7 @@ fqfile=open(rawrd,'r')
 fqfilter=open(outfile,'w')
 leftfilter=open(outfile_2,'w')
 i=0
+
 for line in fqfile:
         #print i,i%4,line
     if i%4==0:
@@ -45,7 +48,6 @@ for line in fqfile:
             qual=line.strip("\n")
             leftfilter.write(seqID+"\n"+sequence+"\n"+mark+"\n"+qual+"\n")
     i+=1
-
 
 fqfile.close()
 fqfilter.close()

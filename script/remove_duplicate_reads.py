@@ -4,8 +4,8 @@ import sys
 
 infile = sys.argv[1]
 outfile = sys.argv[2]
-
 holder=[]
+
 with open(infile,'r') as file:
     rec=file.read().split('>')[1:]
     rec=['>'+i.strip() for i in rec]

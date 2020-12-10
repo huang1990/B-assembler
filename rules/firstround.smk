@@ -7,6 +7,7 @@ if readType=="ONT":
 else:
     par="--pacbio-raw"
     mini="map-pb"
+
 rule first_assemble:
     input:
         "output/long_read_corrected.fasta"
@@ -31,7 +32,7 @@ rule select_longestContig:
 rule rawfq_firstrun:
     input:
         firstrun="output/firstrun.fa",
-        rawfq=config['nanopore']
+        rawfq=config['longread']
     output:
         bam = "output/rawfq-firstrun-srt.bam",
         bai = "output/rawfq-firstrun-srt.bam.bai"

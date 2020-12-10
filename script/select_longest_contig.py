@@ -9,30 +9,31 @@ outfile=sys.argv[2]
 file = open(fa,'r')
 output = open(outfile,'w')
 
-current_string=""
 current_name =""
 max_name=""
 maximal = 0
 max_string=""
 lst=[]
+hash_line={}
 
 for line in file:
     if line.startswith(">"):
         lst.append(line)
-        #last sequence ended:
-        if len(current_string) > maximal:
-            maximal = len(current_string)
-            max_name = current_name
-            max_string = current_string
-        #start reading a new sequence:
-        current_name = line
-        current_string=""
+        current_name=line
     else:
-        current_string+=line.strip("\n") 
+        if current_name not in hash_line.keys():
+            hash_line[current_name] = line.strip("\n")
+        else:
+            hash_line[current_name]+=line.strip("\n")
+            
+for key in hash_line:
+    if len(hash_line[key]) > maximal:
+        maximal = len(hash_line[key])
+        
+        max_name = key
+        max_string = hash_line[key]
+         
 output.write(max_name)
-
-if len(lst)==1:
-    output.write(current_name)
 
 partition = np.ceil(len(max_string)/60)
 for idx in range(0,int(partition)):

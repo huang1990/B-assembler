@@ -53,7 +53,7 @@ rule select_longContig:
     input:
         "output/secondrun/assembly.fasta"
     output:
-        "output/secondrun.fa"
+        "output/secondrunOneline.fa"
     shell:
-        "python script/select_longest_contig.py {input} {output}"
+        "python script/printOneline.py {input} {output}"
 

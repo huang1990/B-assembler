@@ -9,10 +9,10 @@ queryRead=sys.argv[2]
 outfile=sys.argv[3]
 
 ##balst sequence with dnaA gene
-cmd = 'makeblastdb -in '+str(fa)+' -dbtype nucl -out blast'
+cmd = 'makeblastdb -in '+str(fa)+' -dbtype nucl -out output/blast'
 p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 t = p.communicate()[0].decode('utf-8')
-cmd = 'tblastn -db blast -query '+str(queryRead)+' -outfmt 7 -out query.txt'
+cmd = 'tblastn -db blast -query '+str(queryRead)+' -outfmt 7 -out output/query.txt'
 p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 t = p.communicate()[0].decode('utf-8')
 
@@ -25,12 +25,11 @@ for line in file:
 Tlen=len(current_string)
 
 ##find the besthit, select the smallest evalue,in case of identical E-values, the bit score is used as secondary ranking criterion
-df = pd.read_csv("query.txt",sep="\t",error_bad_lines=False, keep_default_na=False,comment='#',header=None)
+df = pd.read_csv("output/query.txt",sep="\t",error_bad_lines=False, keep_default_na=False,comment='#',header=None)
 besthit=[]
 df = df.sort_values(by=10)
 df= df.sort_values(by=11,ascending=False)
 besthit=df.head(10)
-
 sstart= besthit.iloc[0].at[8]
 send= besthit.iloc[0].at[9]
 

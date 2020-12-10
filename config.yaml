@@ -1,6 +1,6 @@
 # DATA
-nanopore: data/rawdata.fastq  # Path to Nanopore reads
-pacbio: data/pacbio_reads_combined.fastq.gz  # Path to Pacbio reads
+longread: data/rawdata.fastq  # Path to Nanopore or pacbio long reads, all long reads should be in a fastq file
+
 illumina:
     R1: data/51226_S1_L001_R1_001.fastq.gz  # Path to Illumina R1 reads
     R2: data/51226_S1_L001_R2_001.fastq.gz  # Path to Illumina R2 reads

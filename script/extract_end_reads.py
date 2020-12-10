@@ -1,19 +1,21 @@
+#!/usr/bin/env python
+
 import subprocess,sys
 
 infile = sys.argv[1]
 bam=sys.argv[2]
 out_1=sys.argv[3]
 out_2=sys.argv[4]
-
 file = open(infile,'r')
 current_string=""
 current_name =""
 for line in file:
+
     if line.startswith("A") or line.startswith("T") or line.startswith("C") or line.startswith("G"):
-        current_string+=line.strip("\n")
-    
+        current_string+=line.strip("\n")    
     if line.startswith(">"):
         current_name=line.strip("\n")
+
 contig=current_name.replace(">", "")
 endNum=len(current_string)
 startNum=int(int(endNum) - int(endNum)*0.2)

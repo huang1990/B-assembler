@@ -11,18 +11,9 @@ rule merge:
     input:
         paf="output/first_second.paf",
         first="output/firstrun.fa",
-        second="output/secondrun.fa"
+        second="output/secondrunOneline.fa"
     output:
-        begin="output/BeginSeq",
-        end="output/EndSeq"
+        merge="output/First_second_merge.fa",
     shell:
-        "python script/tworoundMerge.py {input.paf} {input.first} {input.second} {output.begin} {output.end}"
+        "python script/Mergetworun.py {input.paf} {input.first} {input.second} {output.merge}"
 
-rule mergeFa:
-    input:
-        Begin="output/BeginSeq",
-        End="output/EndSeq"
-    output:
-        "output/First_second_merge.fa"
-    shell:
-        "python script/printPrettyFa.py {input.Begin} {input.End} {output}"

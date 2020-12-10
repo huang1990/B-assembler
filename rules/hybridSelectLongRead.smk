@@ -1,15 +1,14 @@
 rule longread_len:
     input:
-        config['nanopore']
+        config['longread']
     output:
         "output/read_len_distrbution_2.txt"
     shell:
         "python script/read_length_distribution.py {input} {output}"
 
-#echo config['nanopore']
 rule select_longread:
     input:
-        raw=config['nanopore'],
+        raw=config['longread'],
         lenDis="output/read_len_distrbution_2.txt",
     output:
         long="output/filter_length.fq",

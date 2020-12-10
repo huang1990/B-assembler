@@ -4,12 +4,9 @@ import sys, subprocess
 
 infile = sys.argv[1]
 fasta = sys.argv[2]
-
-
 fastq = open(infile, 'r')
 
 ## main function, skip line id 34 and rest counter to write out the fasta
-
 def main(fastq, fasta):
     line_n =0
     line_buffer = 0
@@ -42,7 +39,6 @@ def main(fastq, fasta):
                 outfile.write(fasta_header)
     outfile.close()
     print ('FASTA records written', fastas, 'average length of fasta sequences ', float(fasta_length//fastas))
-
 if __name__ == '__main__':
     main(fastq, fasta)
 fastq.close()
