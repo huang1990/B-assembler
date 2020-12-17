@@ -7,7 +7,7 @@ rule endReads_select:
         end="output/EndAlign.fq",
         begin="output/beginAlign.fq"
     shell:
-        "python script/extract_end_reads.py {input.fa} {input.bam} {output.begin} {output.end}"
+        "python script/ExtractEndReads.py {input.fa} {input.bam} {output.begin} {output.end}"
 
 rule merge_end_reads:
     input:
@@ -17,7 +17,7 @@ rule merge_end_reads:
         Endfq="output/EndReads.fq",
         Endfa="output/EndReads.fa"
     shell:
-        "cat {input} > {output.Endfq} && python script/fq_to_fa.py {output.Endfq} {output.Endfa}"
+        "cat {input} > {output.Endfq} && python script/FqToFa.py {output.Endfq} {output.Endfa}"
 
 rule remove_dupl:
     input:
@@ -25,6 +25,6 @@ rule remove_dupl:
     output:
         "output/EndReads_dupl_remove.fa"
     shell:
-        "python script/remove_duplicate_reads.py {input} {output}"
+        "python script/RemoveDuplicateReads.py {input} {output}"
 
 

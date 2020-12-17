@@ -1,6 +1,6 @@
 rule tworun_align:
     input:
-        sec="output/secondrun.fa",
+        sec="output/secondrun/assembly.fasta",
         fir="output/firstrun.fa"
     output:
         "output/first_second.paf"
@@ -15,5 +15,5 @@ rule merge:
     output:
         merge="output/First_second_merge.fa",
     shell:
-        "python script/Mergetworun.py {input.paf} {input.first} {input.second} {output.merge}"
+        "python script/MergeTwoRun.py {input.paf} {input.first} {input.second} {output.merge}"
 

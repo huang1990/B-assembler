@@ -4,7 +4,7 @@ rule longread_len:
     output:
         "output/read_len_distrbution_2.txt"
     shell:
-        "python script/read_length_distribution.py {input} {output}"
+        "python script/ReadLengthDistribution.py {input} {output}"
 
 rule select_longread:
     input:
@@ -16,7 +16,7 @@ rule select_longread:
     params:
         config['genomesize']
     shell:
-        'python script/select_long_read.py {input.raw} {input.lenDis} {params} {output.long} {output.short}'
+        'python script/SelectLongRead.py {input.raw} {input.lenDis} {params} {output.long} {output.short}'
 
 rule fq_to_fa:
     input:
@@ -24,7 +24,7 @@ rule fq_to_fa:
     output:
         "output/filter_length.fa"
     shell:
-        "python script/fq_to_fa.py {input} {output}"
+        "python script/FqToFa.py {input} {output}"
 
 ##longRead_correct
 rule bwa:

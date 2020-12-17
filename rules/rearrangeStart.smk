@@ -1,8 +1,8 @@
 rule rearrange:
     input:
         assembly="output/merge_corrected_4.fasta",
-        startfa=config['startGene']
+        startfa=config['dnAGene']
     output:
         "output/B_assembly.fasta"
     shell:
-        "python script/rearrange_startPoint.py {input.assembly} {input.startfa} {output}"
+        "python script/RearrangeStartPoint.py {input.assembly} {input.startfa} {output}"

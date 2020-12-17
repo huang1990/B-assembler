@@ -67,7 +67,7 @@ Replace the YAML keys as appropriate. Keys are:
 | `Illumina R2`| path to Illumina R2 | Read1 of paired-end Illumina reads, you can ignore this if you do not have Illumina reads|
 | `genomesize`| int | number of base pair of extimated genomesize of your species|
 | `readtype`| ONT or pb | Type of your long reads, ONT is for nanopore, pb is for pacbio|
-
+| `dnAGene`| absolute path of B-assembler directary | Your working path before "script/start_gene.fa"|
 
 ## Engage the pipeline
 Run the pipeline with `snakemake`, you **must** specify `--cores` to ensure that how many threads you give. 

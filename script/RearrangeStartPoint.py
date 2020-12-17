@@ -9,15 +9,12 @@ queryRead=sys.argv[2]
 outfile=sys.argv[3]
 
 ##balst sequence with dnaA gene
-cmd_1 = 'makeblastdb -in '+str(fa)+' -dbtype nucl -out output/blast && tblastn -db output/blast -query '+str(queryRead)+' -outfmt 7 -out output/query.txt'
-p = subprocess.Popen(cmd_1, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+cmd = 'makeblastdb -in '+str(fa)+' -dbtype nucl -out output/blast && tblastn -db output/blast -query '+str(queryRead)+' -outfmt 7 -out output/query.txt'
+p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 t = p.communicate()[0].decode('utf-8')
-
-
-
-#cmd_2 = 'tblastn -db output/blast -query '+str(queryRead)+' -outfmt 7 -out output/query.txt'
-#o = subprocess.Popen(cmd_2, shell=True, stdin=p, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-#s = o.communicate()[0].decode('utf-8')
+#cmd = 'tblastn -db blast -query '+str(queryRead)+' -outfmt 7 -out output/query.txt'
+#p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+#t = p.communicate()[0].decode('utf-8')
 
 ##rearrange sequence by the alignment
 file = open(fa,'r')
@@ -28,7 +25,7 @@ for line in file:
 Tlen=len(current_string)
 
 ##find the besthit, select the smallest evalue,in case of identical E-values, the bit score is used as secondary ranking criterion
-df = pd.read_csv("output/blast/query.txt",sep="\t",error_bad_lines=False, keep_default_na=False,comment='#',header=None)
+df = pd.read_csv("output/query.txt",sep="\t",error_bad_lines=False, keep_default_na=False,comment='#',header=None)
 besthit=[]
 df = df.sort_values(by=10)
 df= df.sort_values(by=11,ascending=False)

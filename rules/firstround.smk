@@ -27,7 +27,7 @@ rule select_longestContig:
     output:
         "output/firstrun.fa"
     shell:
-        "python script/select_plasmidID_longest_contig.py {input} {output}"
+        "python script/SelectPlasmidID_LongestContig.py {input} {output}"
 
 rule rawfq_firstrun:
     input:
