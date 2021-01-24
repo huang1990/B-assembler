@@ -5,4 +5,6 @@ rule rearrange:
     output:
         "output/B_assembly.fasta"
     shell:
-        "python script/RearrangeStartPoint.py {input.assembly} {input.startfa} {output}"
+        """
+        python scripts/RearrangeStartPoint.py {input.assembly} {input.startfa} {output}
+        """
