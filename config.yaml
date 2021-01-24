@@ -11,6 +11,5 @@ genomesize: 700000  #extimate genome size in base pair
 # LONGREAD TYPE
 readtype: ONT  #nanopore:ONT, pacbio:pb
 
-# working path of B-assembler
-current pathway: scripts/start_gene.fa
+
 
