@@ -46,7 +46,7 @@ git clone https://github.com/huang1990/B-assembler.git; cd B-assembler;
 ## setup the environment
 
 ```
-conda env create -n B-assembler -f env.yaml
+conda env create -n B-assembler -f env.yaml flye=2.7.1
 conda activate B-assembler
 ```
 **Note** It is important that you ensure all bioconda installed tools installed.
