@@ -12,6 +12,7 @@ outfile_2 = sys.argv[5]
 file=open(len_distr,'r')
 n=0
 rd_sum=0
+rd_len=""
 
 for line in file:
     n+=1
@@ -41,7 +42,7 @@ for line in fqfile:
     elif i%4==2:
         mark=line.strip("\n")
     elif i%4==3:
-        if len(sequence)>=int(rd_len):
+        if len(sequence)>=int(float(rd_len)):
             qual=line.strip("\n")
             fqfilter.write(seqID+"\n"+sequence+"\n"+mark+"\n"+qual+"\n")
         else: 

@@ -43,7 +43,7 @@ for line in fqfile:
     elif i%4==2:
         mark=line.strip("\n")
     elif i%4==3:
-        if len(sequence)>=int(rd_len):
+        if len(sequence)>=int(float(rd_len)):
             qual=line.strip("\n")
             fqfilter.write(seqID+"\n"+sequence+"\n"+mark+"\n"+qual+"\n")
         else: 

@@ -1,5 +1,5 @@
 # DATA
-longread: test/test_ONT.fastq  # Path to Nanopore or pacbio long reads, all long reads should be in a fastq file
+longread: ./test_ONT.fastq  # Path to Nanopore or pacbio long reads, all long reads should be in a fastq file
 
 illumina:
     R1: data/51226_S1_L001_R1_001.fastq.gz  # Path to Illumina R1 reads

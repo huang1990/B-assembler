@@ -1,7 +1,7 @@
 rule rearrange:
     input:
         assembly="output/merge_corrected_4.fasta",
-        startfa=config['dnAGene']
+        startfa="scripts/start_gene.fa"
     output:
         "output/B_assembly.fasta"
     shell:
