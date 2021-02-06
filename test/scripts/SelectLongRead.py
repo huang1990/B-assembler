@@ -2,14 +2,48 @@
 
 import os,sys 
 
-rawrd = sys.argv[1]
-len_distr = sys.argv[2]
-genomeSize = sys.argv[3]
-outfile = sys.argv[4]
-outfile_2 = sys.argv[5]
+fastq_file = open(sys.argv[1], 'r')
+prefix = sys.argv[1].split('.')[0]
+outfile = open('output/read_length_distrbution_notSort.txt', 'w')
+seq = ''
+for line in fastq_file:
+    line = line.rstrip('\n')
+    if line.startswith('@'):
+        if seq:
+            outfile.write(str(len(seq)) + '\n')
+            seq = ""
+        name = line
+    else:
+        seq = line
+outfile.write(str(len(seq)) + '\n')
 
+outfile.close()
+fastq_file.close()
+print ('\n' + '\t' + 'File: ' + 'lenghts.txt has been created...')
+
+##sort length by value
+infile=open("output/read_length_distrbution_notSort.txt", 'r')
+len_dis=open(sys.argv[2], 'w')
+
+ls=[]
+for line in infile:
+    line=line.strip('\n')
+    ls.append(line)
+for i in range(0, len(ls)):
+    ls[i] = int(ls[i])
+ls.sort(reverse=True)
+for ele in ls:
+    len_dis.write(str(ele) + '\n')
+
+infile.close()
+len_dis.close()
+
+rawrd = sys.argv[1]
+genomeSize = sys.argv[2]
+outfile = sys.argv[3]
+outfile_2 = sys.argv[4]
 #find the appropriate read length (reads longer than it had coverage 50)
-file=open(len_distr,'r')
+file=open("output/read_len_distrbution_2.txt",'r')
 n=0
 rd_sum=0
 rd_len=""

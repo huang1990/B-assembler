@@ -1,16 +1,14 @@
-rule longread_len:
-    input:
-        config['longread']
-    output:
-        "output/read_len_distrbution_2.txt"
-    shell:
-        """
-        python scripts/ReadLengthDistribution.py {input} {output}
-        """
+import os
+directory="output"
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory="output/secondrun"
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
 rule select_longread:
     input:
-        raw=config['longread'],
-        lenDis="output/read_len_distrbution_2.txt",
+        raw=config['longread']
     output:
         long="output/filter_length.fq",
         short="output/left_filter_length.fq"
