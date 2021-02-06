@@ -16,7 +16,7 @@ rule select_longread:
         config['genomesize']
     shell:
         """
-        python scripts/SelectLongRead.py {input.raw} {input.lenDis} {params} {output.long} {output.short}
+        python scripts/SelectLongRead.py {input.raw} {params} {output.long} {output.short}
         """
 rule fq_to_fa:
     input:

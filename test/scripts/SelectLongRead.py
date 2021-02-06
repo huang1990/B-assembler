@@ -23,7 +23,7 @@ print ('\n' + '\t' + 'File: ' + 'lenghts.txt has been created...')
 
 ##sort length by value
 infile=open("output/read_length_distrbution_notSort.txt", 'r')
-len_dis=open(sys.argv[2], 'w')
+len_dis=open("output/read_len_distrbution_2.txt", 'w')
 
 ls=[]
 for line in infile:
