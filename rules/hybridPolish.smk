@@ -17,7 +17,7 @@ rule bwa_1:
 
 rule pilon_polish_1:
     input:
-        long = 'output/First_second_merge.fa',
+        long = 'output/firstrun.fa',
         bam = 'output/short_merge_srt_1.bam'
     output:
         "output/merge_pilon_corrected_1.fasta"
@@ -26,7 +26,7 @@ rule pilon_polish_1:
         output_dir = 'output'
     shell:
         """
-        java -Xmx10G -jar script/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir} 
+        java -Xmx10G -jar scripts/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir} 
         """
 rule bwa_2:
     input:
@@ -55,7 +55,7 @@ rule pilon_polish_2:
         output_dir = 'output'
     shell:
         """
-        java -Xmx10G -jar script/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
+        java -Xmx10G -jar scripts/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
         """
 rule bwa_3:
     input:
@@ -84,7 +84,7 @@ rule pilon_polish_3:
         output_dir = 'output'
     shell:
         """
-        java -Xmx10G -jar script/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
+        java -Xmx10G -jar scripts/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
         """
 rule bwa_4:
     input:
@@ -114,5 +114,5 @@ rule pilon_polish_4:
         output_dir = 'output'
     shell:
         """
-        java -Xmx10G -jar script/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
+        java -Xmx10G -jar scripts/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
         """
