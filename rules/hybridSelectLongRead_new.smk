@@ -1,16 +1,21 @@
-rule longread_len:
+rule LongRead_correct_allRead:
     input:
-        config['longread']
+        long=config['longread'],
+        short_1=config['illumina']['R1'],
+        short_2 = config['illumina']['R2']
     output:
-        "output/read_len_distrbution_2.txt"
+        "output/racon_polish_longread.fastq"        
     shell:
         """
-        python scripts/ReadLengthDistribution.py {input} {output}
+        cat {input.short_1} {input.short_2} > output/shortread.fq
+        minimap2 -ax sr {input.long} {input.short_1} {input.short_2} > output/short_long.sam
+        racon output/shortread.fq output/short_long.sam {input.long} > output/racon_polish_longread.fasta
+        scripts/fa2fq.pl output/racon_polish_longread.fasta > {output}
         """
+
 rule select_longread:
     input:
-        raw=config['longread'],
-        lenDis="output/read_len_distrbution_2.txt",
+        "output/racon_polish_longread.fastq"
     output:
         long="output/filter_length.fq",
         short="output/left_filter_length.fq"
@@ -18,7 +23,7 @@ rule select_longread:
         config['genomesize']
     shell:
         """
-        python scripts/SelectLongRead.py {input.raw} {input.lenDis} {params} {output.long} {output.short}
+        python scripts/SelectLongRead.py {input} {params} {output.long} {output.short}
         """
 rule fq_to_fa:
     input:

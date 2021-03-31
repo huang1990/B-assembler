@@ -4,12 +4,12 @@ rule longread_len:
     output:
         "output/read_len_distrbution_2.txt"
     shell:
-        "python scripts/ReadLengthDistribution.py {input} {output}"
-
+        """
+        python scripts/ReadLengthDistribution.py {input} {output}
+        """
 rule select_longread:
     input:
-        raw=config['longread'],
-        lenDis="output/read_len_distrbution_2.txt",
+        raw=config['longread']
     output:
         long="output/filter_length.fq",
         short="output/left_filter_length.fq"
@@ -17,9 +17,8 @@ rule select_longread:
         config['genomesize']
     shell:
         """
-        python scripts/SelectLongRead.py {input.raw} {input.lenDis} {params} {output.long} {output.short}
+        python scripts/SelectLongRead.py {input.raw} {params} {output.long} {output.short}
         """
-
 rule fq_to_fa:
     input:
         "output/filter_length.fq"
@@ -30,31 +29,33 @@ rule fq_to_fa:
         python scripts/FqToFa.py {input} {output}
         """
 ##longRead_correct
-rule bwa:
+par=""
+readType=config['readtype']
+if readType=="ONT":
+    par="map-ont"
+else:
+    par="map-pb"
+
+rule short_to_long:
     input:
         long = "output/filter_length.fa",
-        short_1 = config['illumina']['R1'],
-        short_2 = config['illumina']['R2']
+        short = "output/left_filter_length.fq"
     output:
-        bam="output/short_read_long-srt.bam",
-        bai="output/short_read_long-srt.bam.bai"
-    conda:
-        'envs/bwa.yaml'
+        "output/short_to_long.sam"
+    params:
+        type=par
     shell:
-        'bwa index {input.long};'
-        'bwa mem -t 8 {input.long} {input.short_1} {input.short_2} | samtools view -Sb - |  samtools sort - -o {output.bam};'
-        'samtools index {output.bam}'
-
+        """
+        minimap2 -ax {params.type} {input.long} {input.short} > {output}
+        """
 rule longread_polish:
     input:
         long = 'output/filter_length.fa',
-        bam = 'output/short_read_long-srt.bam'
+        short = 'output/left_filter_length.fq',
+        sam = 'output/short_to_long.sam'
     output:
         "output/long_read_corrected.fasta"
-    params:
-        output_prefix = 'long_read_corrected',
-        output_dir = 'output'
     shell:
         """
-        java -Xmx10G -jar script/pilon-1.23.jar --genome {input.long} --frags {input.bam} --fix all --output {params.output_prefix} --outdir {params.output_dir}
+        racon {input.short} {input.sam} {input.long} > {output}
         """

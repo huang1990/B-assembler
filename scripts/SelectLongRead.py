@@ -53,7 +53,7 @@ for line in file:
     line=line.strip('\n')
     rd_sum+=int(line)
     #print(rd_sum)
-    if rd_sum/int(genomeSize) > 50:
+    if rd_sum/int(float(genomeSize)) > 100:
         break
     rd_line=n
 

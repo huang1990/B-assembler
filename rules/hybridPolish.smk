@@ -1,6 +1,21 @@
+rule polish_round1:
+    input:
+        assembly="output/firstrun.fa",
+        read=config['longread']
+    output:
+        "output/polished_2.fasta"
+    params:
+        dir="output/",
+        type=par
+
+    shell:
+        """
+        flye --polish-target {input.assembly} {params.type} {input.read} --iterations 2 --out-dir {params.dir}
+        """
+
 rule bwa_1:
     input:
-        long = "output/firstrun.fa",
+        long = "output/polished_2.fasta",
         short_1 = config['illumina']['R1'],
         short_2 = config['illumina']['R2']
     output:
